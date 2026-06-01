@@ -1,5 +1,3 @@
-"use client"
-
 import { useRef, useMemo } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Float, MeshDistortMaterial } from "@react-three/drei"

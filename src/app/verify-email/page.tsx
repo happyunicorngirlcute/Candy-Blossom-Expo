@@ -1,6 +1,6 @@
 import { useEffect, useState, Suspense } from "react"
 import { useSearchParams, useRouter } from "expo-router"
-import { motion } from "framer-motion"
+import { motion } from "@/lib/motion"
 import { fetchBackend } from "@/lib/fetchApi"
 
 const containerVariants = {

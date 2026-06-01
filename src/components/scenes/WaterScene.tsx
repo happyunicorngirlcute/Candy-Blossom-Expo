@@ -1,5 +1,3 @@
-"use client"
-
 import { useRef, useMemo } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Float, MeshDistortMaterial } from "@react-three/drei"
@@ -18,7 +16,6 @@ function WaterDropModel({ dark }: { dark: boolean }) {
 
   return (
     <group ref={groupRef}>
-      {/* Main drop */}
       <Float speed={2} rotationIntensity={0.2} floatIntensity={0.4}>
         <mesh position={[0, 0.3, 0]}>
           <sphereGeometry args={[0.5, 20, 20]} />
@@ -34,7 +31,6 @@ function WaterDropModel({ dark }: { dark: boolean }) {
         </mesh>
       </Float>
 
-      {/* Ripples */}
       {[0, 1, 2].map((i) => (
         <mesh key={i} position={[0, -0.4 - i * 0.15, 0]} rotation={[-Math.PI / 2, 0, 0]}>
           <ringGeometry args={[0.3 + i * 0.15, 0.35 + i * 0.15, 24]} />
@@ -42,7 +38,6 @@ function WaterDropModel({ dark }: { dark: boolean }) {
         </mesh>
       ))}
 
-      {/* Small surrounding drops */}
       {Array.from({ length: 5 }, (_, i) => {
         const angle = (i / 5) * Math.PI * 2
         return (

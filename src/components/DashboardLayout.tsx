@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { usePathname, useRouter } from "expo-router"
 import { Link } from "expo-router"
 import { useAuth } from "@/components/AuthProvider"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "@/lib/motion"
 
 const IconWrapper = ({ children }: { children: React.ReactNode }) => (
   <div className="w-4 h-4 flex items-center justify-center opacity-70">

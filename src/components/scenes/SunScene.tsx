@@ -1,5 +1,3 @@
-"use client"
-
 import { useRef, useMemo } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Float, MeshDistortMaterial } from "@react-three/drei"
@@ -19,7 +17,6 @@ function SunModel({ dark }: { dark: boolean }) {
 
   return (
     <group ref={groupRef}>
-      {/* Outer glow rings */}
       {[0, 1, 2].map((i) => (
         <mesh key={i} rotation={[0.2 * i, 0.3 * i, 0]}>
           <torusGeometry args={[0.8 + i * 0.3, 0.02, 16, 32]} />
@@ -27,7 +24,6 @@ function SunModel({ dark }: { dark: boolean }) {
         </mesh>
       ))}
 
-      {/* Rays */}
       {Array.from({ length: 8 }, (_, i) => {
         const angle = (i / 8) * Math.PI * 2
         return (
@@ -49,7 +45,6 @@ function SunModel({ dark }: { dark: boolean }) {
         )
       })}
 
-      {/* Core */}
       <Float speed={3} rotationIntensity={0.1} floatIntensity={0.2}>
         <mesh>
           <sphereGeometry args={[0.5, 24, 24]} />

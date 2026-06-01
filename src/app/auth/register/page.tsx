@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { motion } from "@/lib/motion"
 import { useRouter } from "expo-router"
 import { fetchBackend } from "@/lib/fetchApi"
 

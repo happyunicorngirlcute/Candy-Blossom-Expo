@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { motion } from "@/lib/motion"
 import { useRef, useState, Suspense } from "react"
 import { useLocalSearchParams } from "expo-router"
 

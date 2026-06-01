@@ -1,5 +1,3 @@
-"use client"
-
 import { useRef, useMemo } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Float, MeshDistortMaterial } from "@react-three/drei"
@@ -22,13 +20,11 @@ function PlantModel({ dark }: { dark: boolean }) {
 
   return (
     <group ref={groupRef}>
-      {/* Stem */}
       <mesh ref={stemRef} position={[0, -1.2, 0]}>
         <cylinderGeometry args={[0.04, 0.06, 1.6, 8]} />
         <meshStandardMaterial color={dark ? "#2d5a27" : "#4a8f3f"} transparent opacity={0.7} />
       </mesh>
 
-      {/* Leaves on stem */}
       {[-0.6, 0.2].map((y, i) => (
         <Float key={i} speed={1.5} rotationIntensity={0.4} floatIntensity={0.3}>
           <mesh position={[0.4, y, 0]} rotation={[0.3, 0.5, i === 0 ? 0.8 : -0.8]}>
@@ -45,7 +41,6 @@ function PlantModel({ dark }: { dark: boolean }) {
         </Float>
       ))}
 
-      {/* Flower petals */}
       {Array.from({ length: 6 }, (_, i) => {
         const angle = (i / 6) * Math.PI * 2
         return (
@@ -69,7 +64,6 @@ function PlantModel({ dark }: { dark: boolean }) {
         )
       })}
 
-      {/* Center */}
       <mesh position={[0, 0.5, 0]}>
         <sphereGeometry args={[0.2, 16, 16]} />
         <MeshDistortMaterial

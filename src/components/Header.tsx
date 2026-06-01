@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion } from "@/lib/motion"
 import { useRouter, usePathname } from "expo-router"
 import { Link } from "expo-router"
 import { useTheme } from "@/components/ThemeProvider"
