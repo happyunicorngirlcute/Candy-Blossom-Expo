@@ -3,6 +3,7 @@ import { View, Text, Pressable, ScrollView } from "react-native"
 import { motion } from "@/lib/motion"
 import { useTheme } from "@/components/ThemeProvider"
 import { themeColors } from "@/lib/colors"
+import { Sprout, Close } from "@/lib/icons"
 
 interface PlantDetailsModalProps {
   plant: any
@@ -39,7 +40,7 @@ const PlantDetailsModal: React.FC<PlantDetailsModalProps> = ({ plant, onClose })
       >
         <ScrollView>
           <View style={{ height: 180, backgroundColor: c.bg, alignItems: "center", justifyContent: "center" }}>
-            <Text style={{ fontSize: 48 }}>🪴</Text>
+            <Sprout color={c.muted + "40"} size={48} />
           </View>
           <View style={{ padding: 24, gap: 16 }}>
             <Text style={{ fontSize: 22, fontWeight: "700", color: c.text }}>{plant.common_name}</Text>
@@ -73,7 +74,7 @@ const PlantDetailsModal: React.FC<PlantDetailsModalProps> = ({ plant, onClose })
           </View>
         </ScrollView>
         <Pressable onPress={onClose} style={{ position: "absolute", top: 12, right: 12, width: 36, height: 36, borderRadius: 18, backgroundColor: c.bg, alignItems: "center", justifyContent: "center" }}>
-          <Text style={{ fontSize: 16, color: c.muted }}>✕</Text>
+          <Close color={c.muted} size={16} />
         </Pressable>
       </motion.View>
     </View>

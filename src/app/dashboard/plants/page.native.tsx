@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "@/lib/motion"
 import PlantDetailsModal from "@/components/PlantDetailsModal"
 import { useTheme } from "@/components/ThemeProvider"
 import { themeColors } from "@/lib/colors"
+import { SunIcon, WaterDrop, Sprout } from "@/lib/icons"
 
 export default function MyPlantsPage() {
   const [plants, setPlants] = useState<any[]>([])
@@ -89,7 +90,7 @@ export default function MyPlantsPage() {
                 }}
               >
                 <View style={{ height: 100, backgroundColor: c.bg, alignItems: "center", justifyContent: "center" }}>
-                  <Text style={{ fontSize: 24 }}>🪴</Text>
+                  <Sprout color={c.muted + "60"} size={24} />
                 </View>
                 <View style={{ padding: 16, gap: 8 }}>
                   <Text style={{ fontSize: 16, fontWeight: "600", color: c.text }} numberOfLines={1}>
@@ -97,14 +98,14 @@ export default function MyPlantsPage() {
                   </Text>
                   <View style={{ flexDirection: "row", gap: 8 }}>
                     <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-                      <Text>☀️</Text>
+                      <SunIcon color={c.muted} size={12} />
                       <Text style={{ fontSize: 11, color: c.muted }} numberOfLines={1}>
                         {Array.isArray(p?.sunlight) ? p.sunlight[0] : p?.sunlight || "N/A"}
                       </Text>
                     </View>
                   </View>
                   <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-                    <Text>💧</Text>
+                    <WaterDrop color={c.muted} size={12} />
                     <Text style={{ fontSize: 11, color: c.muted }}>{p?.watering || "N/A"}</Text>
                   </View>
                   {wateringDate && (

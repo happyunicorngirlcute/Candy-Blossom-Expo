@@ -3,6 +3,7 @@ import { View, Text, ScrollView, ActivityIndicator, RefreshControl } from "react
 import { useRouter } from "expo-router"
 import { useTheme } from "@/components/ThemeProvider"
 import { themeColors } from "@/lib/colors"
+import { Sprout as SproutIcon } from "@/lib/icons"
 
 type PlantItem = {
   id: number
@@ -151,7 +152,7 @@ export default function OverviewPage() {
               return (
                 <View key={item.id} style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 12, borderRadius: 12, borderWidth: 1, borderColor: c.border, backgroundColor: c.bg }}>
                   <View style={{ flexDirection: "row", alignItems: "center", gap: 10, flex: 1 }}>
-                    <Text style={{ fontSize: 20 }}>🪴</Text>
+                    <SproutIcon color={c.muted + "99"} size={20} />
                     <View style={{ flex: 1 }}>
                       <Text style={{ fontSize: 12, fontWeight: "700", color: c.text }} numberOfLines={1}>{p.common_name}</Text>
                       <Text style={{ fontSize: 10, color: c.muted + "99" }} numberOfLines={1}>{p.scientific_name?.[0] || p.family || "Indoor species"}</Text>

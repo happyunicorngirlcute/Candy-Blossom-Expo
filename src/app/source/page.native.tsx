@@ -3,6 +3,7 @@ import { View, Text, Pressable, ScrollView } from "react-native"
 import { motion } from "@/lib/motion"
 import { useTheme } from "@/components/ThemeProvider"
 import { themeColors } from "@/lib/colors"
+import { ExternalLink } from "@/lib/icons"
 
 export default function SourcePage() {
   const { dark } = useTheme()
@@ -25,7 +26,7 @@ export default function SourcePage() {
           }}
         >
           <Text style={{ fontWeight: "600", fontSize: 13, color: dark ? "#000" : "#fff" }}>
-            View on GitHub →
+            View on GitHub <ExternalLink color={dark ? "#000" : "#fff"} size={13} />
           </Text>
         </Pressable>
       </motion.View>

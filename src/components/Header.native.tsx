@@ -17,7 +17,7 @@ import { useAuth } from "@/components/AuthProvider"
 import { themeColors } from "@/lib/colors"
 import {
   SunIcon, MoonIcon, ChevronDown, ChevronUp,
-  Hamburger, Close, Search as SearchIcon,
+  Hamburger, Close,
 } from "@/lib/icons"
 
 const products = [

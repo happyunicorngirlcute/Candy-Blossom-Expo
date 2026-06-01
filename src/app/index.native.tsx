@@ -14,6 +14,11 @@ import { useLocalSearchParams } from "expo-router"
 import { motion } from "@/lib/motion"
 import { useTheme } from "@/components/ThemeProvider"
 import { themeColors } from "@/lib/colors"
+import { WaterDrop, SunIcon, Cloud, Search, Pencil, Grid } from "@/lib/icons"
+
+const iconComponents: Record<string, React.FC<{ color: string; size: number }>> = {
+  WaterDrop, SunIcon, Cloud, Search, Pencil, Grid,
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -49,12 +54,12 @@ function Hero({ c }: { c: typeof themeColors.light }) {
 }
 
 const features = [
-  { title: "Smart Watering", description: "Get notified exactly when your plants need water.", color: "#3b82f6", emoji: "💧" },
-  { title: "Sunlight Tracking", description: "Know when to move your plants into the sun or shade.", color: "#f59e0b", emoji: "☀️" },
-  { title: "Weather Integration", description: "Real-time weather adjusts care recommendations.", color: "#0ea5e9", emoji: "🌤️" },
-  { title: "Plant Identification", description: "Upload a photo to identify any plant species.", color: "#10b981", emoji: "🔍" },
-  { title: "Care Notes", description: "Log observations and track growth for each plant.", color: "#a855f7", emoji: "📝" },
-  { title: "Dashboard Overview", description: "See all plants with hydration scores and schedules.", color: "#ec4899", emoji: "📊" },
+  { title: "Smart Watering", description: "Get notified exactly when your plants need water.", color: "#3b82f6", icon: "WaterDrop" },
+  { title: "Sunlight Tracking", description: "Know when to move your plants into the sun or shade.", color: "#f59e0b", icon: "SunIcon" },
+  { title: "Weather Integration", description: "Real-time weather adjusts care recommendations.", color: "#0ea5e9", icon: "Cloud" },
+  { title: "Plant Identification", description: "Upload a photo to identify any plant species.", color: "#10b981", icon: "Search" },
+  { title: "Care Notes", description: "Log observations and track growth for each plant.", color: "#a855f7", icon: "Pencil" },
+  { title: "Dashboard Overview", description: "See all plants with hydration scores and schedules.", color: "#ec4899", icon: "Grid" },
 ]
 
 function HomeContent() {
@@ -206,7 +211,10 @@ function HomeContent() {
                     gap: 8,
                   }}
                 >
-                  <Text style={{ fontSize: 24 }}>{f.emoji}</Text>
+                  {(() => {
+                    const IconComp = iconComponents[f.icon as keyof typeof iconComponents]
+                    return IconComp ? <IconComp color={f.color} size={24} /> : null
+                  })()}
                   <Text style={{ fontSize: 15, fontWeight: "600", color: c.text }}>{f.title}</Text>
                   <Text style={{ fontSize: 13, lineHeight: 18, color: c.muted }}>{f.description}</Text>
                 </motion.View>

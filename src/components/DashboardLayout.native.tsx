@@ -6,25 +6,9 @@ import { useAuth } from "@/components/AuthProvider"
 import { useTheme } from "@/components/ThemeProvider"
 import { motion, AnimatePresence } from "@/lib/motion"
 import { themeColors } from "@/lib/colors"
+import { SunIcon, WaterDrop, Grid, Plus, Sprout, Settings, Close, Hamburger } from "@/lib/icons"
 
 let notifShown = false
-
-function SunIconSmall() {
-  return <Text style={{ fontSize: 16 }}>☀️</Text>
-}
-
-function WaterIcon() {
-  return <Text style={{ fontSize: 16 }}>💧</Text>
-}
-
-function IconWrapper({ children }: { children: React.ReactNode }) {
-  return <View style={{ width: 16, height: 16, alignItems: "center", justifyContent: "center", opacity: 0.7 }}>{children}</View>
-}
-
-function SmallIcon({ type }: { type: "grid" | "plus" | "leaf" | "settings" }) {
-  const symbols: Record<string, string> = { grid: "▦", plus: "+", leaf: "♣", settings: "⚙" }
-  return <Text style={{ fontSize: 12, color: "inherit" }}>{symbols[type] || "•"}</Text>
-}
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, loading } = useAuth()
@@ -110,7 +94,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <Link href={path} key={path} asChild>
         <Pressable style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 10, paddingVertical: 5, borderRadius: 6, backgroundColor: active ? c.border : "transparent" }}>
           <View style={{ width: 16, height: 16, alignItems: "center", justifyContent: "center", opacity: 0.7 }}>
-            <Text style={{ fontSize: 12, color: active ? c.text : c.muted }}>{icon}</Text>
+            {icon}
           </View>
           <Text style={{ fontSize: 13, fontWeight: "400", color: active ? c.text : c.muted }}>{label}</Text>
         </Pressable>
@@ -122,8 +106,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <View style={{ padding: 16, gap: 5 }}>
       <View style={{ flexDirection: "column", gap: 4 }}>
         <View style={{ flexDirection: "column", gap: 4 }}>
-          {navItem("/dashboard", "▦", "Overview")}
-          {navItem("/dashboard/add-plant", "+", "Add a plant")}
+          {navItem("/dashboard", <Grid color={isActive("/dashboard") ? c.text : c.muted} size={12} />, "Overview")}
+          {navItem("/dashboard/add-plant", <Plus color={isActive("/dashboard/add-plant") ? c.text : c.muted} size={12} />, "Add a plant")}
         </View>
       </View>
       <View style={{ marginTop: 16 }}>
@@ -131,8 +115,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           COLLECTION
         </Text>
         <View style={{ flexDirection: "column", gap: 4 }}>
-          {navItem("/dashboard/plants", "♣", "My Plants")}
-          {navItem("/dashboard/settings", "⚙", "Settings")}
+          {navItem("/dashboard/plants", <Sprout color={isActive("/dashboard/plants") ? c.text : c.muted} size={12} />, "My Plants")}
+          {navItem("/dashboard/settings", <Settings color={isActive("/dashboard/settings") ? c.text : c.muted} size={12} />, "Settings")}
         </View>
       </View>
     </View>
@@ -150,7 +134,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               style={{ width: "100%", maxWidth: 360, borderRadius: 16, borderWidth: 1, borderColor: c.border, backgroundColor: c.surface, padding: 32, alignItems: "center", shadowColor: "#000", shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.3, shadowRadius: 20, elevation: 10 }}
             >
-              <View style={{ marginBottom: 16 }}>{notification.type === "sun" ? <SunIconSmall /> : <WaterIcon />}</View>
+              <View style={{ marginBottom: 16 }}>{notification.type === "sun" ? <SunIcon color="#f97316" size={24} /> : <WaterDrop color={c.accent} size={24} />}</View>
               <Text style={{ fontSize: 18, fontWeight: "700", color: c.text, marginBottom: 16 }}>
                 {notification.type === "sun" ? "Sun Exposure Alert" : "Time to get ready!"}
               </Text>
@@ -180,7 +164,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             >
               <View style={{ flexDirection: "row", justifyContent: "flex-end", padding: 16 }}>
                 <Pressable onPress={() => setMobileMenuOpen(false)} style={{ width: 32, height: 32, borderRadius: 8, alignItems: "center", justifyContent: "center" }}>
-                  <Text style={{ fontSize: 16, color: c.muted }}>✕</Text>
+                  <Close color={c.muted} size={16} />
                 </Pressable>
               </View>
               {sidebarContent}
@@ -200,7 +184,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           onPress={() => setMobileMenuOpen(true)}
           style={{ position: "absolute", top: insets.top + 8, left: 8, zIndex: 50, width: 40, height: 40, borderRadius: 12, borderWidth: 1, borderColor: c.border, backgroundColor: c.surface, alignItems: "center", justifyContent: "center" }}
         >
-          <Text style={{ fontSize: 18, color: c.text }}>☰</Text>
+          <Hamburger color={c.text} size={18} />
         </Pressable>
       )}
 

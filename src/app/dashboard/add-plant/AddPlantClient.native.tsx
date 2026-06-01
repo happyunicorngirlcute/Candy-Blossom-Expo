@@ -4,6 +4,7 @@ import { useRouter } from "expo-router"
 import { motion, AnimatePresence } from "@/lib/motion"
 import { useTheme } from "@/components/ThemeProvider"
 import { themeColors } from "@/lib/colors"
+import { SunIcon, WaterDrop, Sprout, ChevronLeft, ChevronRight } from "@/lib/icons"
 
 type Plant = {
   id: number
@@ -165,12 +166,12 @@ export default function AddPlantClient() {
             <Text style={{ fontWeight: "700" }}>{total}</Text> results found
           </Text>
           <View style={{ flexDirection: "row", gap: 8, alignItems: "center" }}>
-            <Pressable disabled={currentPage <= 1} onPress={() => handleSearch(currentPage - 1)} style={{ padding: 8, borderRadius: 8, borderWidth: 1, borderColor: c.border, opacity: currentPage <= 1 ? 0.3 : 1 }}>
-              <Text style={{ fontSize: 14, color: c.muted }}>◀</Text>
+                <Pressable disabled={currentPage <= 1} onPress={() => handleSearch(currentPage - 1)} style={{ padding: 8, borderRadius: 8, borderWidth: 1, borderColor: c.border, opacity: currentPage <= 1 ? 0.3 : 1 }}>
+              <ChevronLeft color={c.muted} size={14} />
             </Pressable>
             <Text style={{ fontSize: 12, fontWeight: "600", color: c.muted + "b0" }}>{currentPage} / {lastPage}</Text>
             <Pressable disabled={currentPage >= lastPage} onPress={() => handleSearch(currentPage + 1)} style={{ padding: 8, borderRadius: 8, borderWidth: 1, borderColor: c.border, opacity: currentPage >= lastPage ? 0.3 : 1 }}>
-              <Text style={{ fontSize: 14, color: c.muted }}>▶</Text>
+              <ChevronRight color={c.muted} size={14} />
             </Pressable>
           </View>
         </View>
@@ -193,19 +194,19 @@ export default function AddPlantClient() {
             }}
           >
             <View style={{ height: 80, backgroundColor: c.bg, alignItems: "center", justifyContent: "center" }}>
-              <Text style={{ fontSize: 24 }}>🪴</Text>
+              <Sprout color={c.muted + "60"} size={24} />
             </View>
             <View style={{ padding: 12, gap: 6 }}>
               <Text style={{ fontSize: 13, fontWeight: "600", color: c.text }} numberOfLines={1}>{plant.common_name}</Text>
               <View style={{ flexDirection: "row", gap: 4, flexWrap: "wrap" }}>
                 {plant.sunlight && plant.sunlight.length > 0 && (
                   <View style={{ paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6, backgroundColor: "#f59e0b18" }}>
-                    <Text style={{ fontSize: 9, fontWeight: "700", color: "#f59e0b" }}>☀️ {plant.sunlight[0]}</Text>
+                    <Text style={{ fontSize: 9, fontWeight: "700", color: "#f59e0b" }}><SunIcon color="#f59e0b" size={9} /> {plant.sunlight[0]}</Text>
                   </View>
                 )}
                 {plant.watering && (
                   <View style={{ paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6, backgroundColor: "#3b82f618" }}>
-                    <Text style={{ fontSize: 9, fontWeight: "700", color: "#3b82f6" }}>💧 {plant.watering}</Text>
+                    <Text style={{ fontSize: 9, fontWeight: "700", color: "#3b82f6" }}><WaterDrop color="#3b82f6" size={9} /> {plant.watering}</Text>
                   </View>
                 )}
               </View>
@@ -237,10 +238,10 @@ export default function AddPlantClient() {
       {total > 0 && !searching && (
         <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 8, marginTop: 24 }}>
           <Pressable disabled={currentPage <= 1} onPress={() => handleSearch(currentPage - 1)} style={{ paddingHorizontal: 16, paddingVertical: 8, borderRadius: 12, borderWidth: 1, borderColor: c.border, opacity: currentPage <= 1 ? 0.3 : 1 }}>
-            <Text style={{ fontSize: 12, fontWeight: "600", color: c.muted }}>◀ Previous</Text>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}><ChevronLeft color={c.muted} size={12} /><Text style={{ fontSize: 12, fontWeight: "600", color: c.muted }}> Previous</Text></View>
           </Pressable>
           <Pressable disabled={currentPage >= lastPage} onPress={() => handleSearch(currentPage + 1)} style={{ paddingHorizontal: 16, paddingVertical: 8, borderRadius: 12, borderWidth: 1, borderColor: c.border, opacity: currentPage >= lastPage ? 0.3 : 1 }}>
-            <Text style={{ fontSize: 12, fontWeight: "600", color: c.muted }}>Next ▶</Text>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}><Text style={{ fontSize: 12, fontWeight: "600", color: c.muted }}>Next </Text><ChevronRight color={c.muted} size={12} /></View>
           </Pressable>
         </View>
       )}

@@ -3,6 +3,7 @@ import { View, Text, TextInput, Pressable, ScrollView, KeyboardAvoidingView, Pla
 import { motion, AnimatePresence } from "@/lib/motion"
 import { useTheme } from "@/components/ThemeProvider"
 import { themeColors } from "@/lib/colors"
+import { Mail, MapPin, Send } from "@/lib/icons"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -46,7 +47,7 @@ export default function ContactPage() {
               <View style={{ gap: 20 }}>
                 <View style={{ flexDirection: "row", gap: 12, alignItems: "flex-start" }}>
                   <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: c.accent + "18", alignItems: "center", justifyContent: "center" }}>
-                    <Text style={{ fontSize: 16 }}>✉️</Text>
+                    <Mail color={c.accent} size={16} />
                   </View>
                   <View>
                     <Text style={{ fontSize: 10, fontWeight: "700", letterSpacing: 1, color: c.muted }}>EMAIL</Text>
@@ -55,7 +56,7 @@ export default function ContactPage() {
                 </View>
                 <View style={{ flexDirection: "row", gap: 12, alignItems: "flex-start" }}>
                   <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: c.accent + "18", alignItems: "center", justifyContent: "center" }}>
-                    <Text style={{ fontSize: 16 }}>📍</Text>
+                    <MapPin color={c.accent} size={16} />
                   </View>
                   <View>
                     <Text style={{ fontSize: 10, fontWeight: "700", letterSpacing: 1, color: c.muted }}>LOCATION</Text>
@@ -94,7 +95,7 @@ export default function ContactPage() {
                       <TextInput value={message} onChangeText={setMessage} multiline numberOfLines={5} placeholder="Your message" placeholderTextColor={c.muted + "60"} style={{ borderRadius: 12, borderWidth: 1, borderColor: c.border, backgroundColor: c.bg, paddingHorizontal: 16, paddingVertical: 12, fontSize: 13, color: c.text, minHeight: 100, textAlignVertical: "top" }} />
                     </View>
                     <Pressable onPress={handleSubmit} disabled={sending} style={{ alignSelf: "flex-start", flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 12, backgroundColor: c.accent, paddingHorizontal: 24, paddingVertical: 12, opacity: sending ? 0.5 : 1 }}>
-                      <Text style={{ fontSize: 16 }}>📨</Text>
+                      <Send color="#fff" size={16} />
                       <Text style={{ fontSize: 13, fontWeight: "600", color: "#fff" }}>{sending ? "Sending..." : "Send Message"}</Text>
                     </Pressable>
                   </motion.View>
